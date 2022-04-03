@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NewsApps</string>
+    <string name="api_key">b543c0f8a7d144888ffbbef4cf24edf6</string>
+    <string name="generalIcon">GENERAL</string>
+    <string name="sportIcon">SPORTS</string>
+    <string name="healthIcon">HEALTH</string>
+    <string name="bussIcon">BUSINESS</string>
+    <string name="scinceIcone">SCIENCE</string>
+    <string name="tecIcon">TECHNOLOGY</string>
+    <string name="enterIcon">ENERTAINMENT</string>
+    <string name="search">search here.........</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">اخباراليوم</string>
+    <string name="api_key">b543c0f8a7d144888ffbbef4cf24edf6</string>
+    <string name="generalIcon">عام</string>
+    <string name="sportIcon">رياضه</string>
+    <string name="healthIcon">الصحه</string>
+    <string name="bussIcon">اقتصاد</string>
+    <string name="scinceIcone">علوم</string>
+    <string name="tecIcon">تكنولوجى</string>
+    <string name="enterIcon">ترفيه</string>
+    <string name="search" tools:ignore="ExtraTranslation">ابحث هنا............</string>
+
+</resources>
