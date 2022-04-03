@@ -32,60 +32,18 @@ public class MainActivity extends AppCompatActivity implements SelectListner {
         setContentView(R.layout.activity_main);
         //////////////
         //dioalog
-        dialog = new ProgressDialog(this);
-        dialog.setTitle("Teching news Article...");
-        dialog.show();
-        RequstManeger maneger = new RequstManeger(this);
-        maneger.getNewsHeadlines(listener, "GENERAL", null);
-        //dioalog
-        ////////////////
+        dialogGeneral("general");
 
         ///////////////
         //searchcode
-        searchView = findViewById(R.id.searchView);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                dialog.setTitle("Teching news Article of " + s);
-                dialog.show();
-                RequstManeger maneger = new RequstManeger(MainActivity.this);
-                maneger.getNewsHeadlines(listener, "general", s);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });//searchcode
+        search();
 
         ////////////////
-
         //tablayout code
-        tabLayout = findViewById(R.id.tabLayout);
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int pos = tab.getPosition();
-                selectedTab(pos);
+        setTabLayout();
 
 
-            }
-
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-
-    }//tablayout code
+    }
 
     private final OnFetDataListener<NewsApiResponse> listener = new OnFetDataListener<NewsApiResponse>() {
         @Override
@@ -121,36 +79,73 @@ public class MainActivity extends AppCompatActivity implements SelectListner {
     public void selectedTab(int pos) {
         switch (pos) {
             case 0:
-                dialog.setTitle("Teching news Article of business ");
-                RequstManeger maneger = new RequstManeger(MainActivity.this);
-                maneger.getNewsHeadlines(listener, "general", null);
+                dialogGeneral("general");
                 break;
             case 1:
-                dialog.setTitle("Teching news Article of technology ");
-                maneger = new RequstManeger(MainActivity.this);
-                maneger.getNewsHeadlines(listener, "technology", null);
+                dialogGeneral("technology");
             case 2:
-                dialog.setTitle("Teching news Article of sports ");
-                maneger = new RequstManeger(MainActivity.this);
-                maneger.getNewsHeadlines(listener, "sports", null);
+                dialogGeneral("sports");
             case 3:
-                dialog.setTitle("Teching news Article of scince");
-                maneger = new RequstManeger(MainActivity.this);
-                maneger.getNewsHeadlines(listener, "scince", null);
+                dialogGeneral("scince");
             case 4:
-                dialog.setTitle("Teching news Article of health ");
-                maneger = new RequstManeger(MainActivity.this);
-                maneger.getNewsHeadlines(listener, "health", null);
+                dialogGeneral("health");
             case 5:
-                dialog.setTitle("Teching news Article of entertainment ");
-                maneger = new RequstManeger(MainActivity.this);
-                maneger.getNewsHeadlines(listener, "entertainment", null);
+                dialogGeneral("entertainment");
             case 6:
-                dialog.setTitle("Teching news Article of business ");
-                maneger = new RequstManeger(MainActivity.this);
-                maneger.getNewsHeadlines(listener, "business", null);
+                dialogGeneral("business");
 
         }
 
+    }
+
+    public void search() {
+        searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                dialog.setTitle("Teching news Article of " + s);
+                dialog.show();
+                RequstManeger maneger = new RequstManeger(MainActivity.this);
+                maneger.getNewsHeadlines(listener, "general", s);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+    }
+
+    public void setTabLayout() {
+        tabLayout = findViewById(R.id.tabLayout);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int pos = tab.getPosition();
+                selectedTab(pos);
+
+
+            }
+
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    public void dialogGeneral(String categroy) {
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Teching news Article..." + categroy);
+        dialog.show();
+        RequstManeger maneger = new RequstManeger(this);
+        maneger.getNewsHeadlines(listener, categroy, null);
     }
 }
